@@ -3,6 +3,8 @@
 
 #------------ Excluir (backend) ------------
 backend/**/__pycache__/
+backend/**/migrations/*
+!backend/**/migrations/__init__.py
 backend/**/*.pyc
 backend/**/*.pyo
 backend/db.sqlite3
