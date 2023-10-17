@@ -1,7 +1,7 @@
 .mobileBlack {
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
     text-decoration: none;
     width: fit-content;
     .textContainer {
@@ -19,7 +19,7 @@
 
             .textTwo {
                 letter-spacing: 4px;
-                font-size: 10px;
+                font-size: 11px;
                 color: #fff;
             }
         }
@@ -45,7 +45,7 @@
 .mobileWhite {
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
     text-decoration: none;
     width: fit-content;
     .textContainer {
@@ -63,7 +63,7 @@
 
             .textTwo {
                 letter-spacing: 4px;
-                font-size: 10px;
+                font-size: 11px;
                 color: #000;
             }
         }
@@ -89,7 +89,7 @@
 .black {
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
     text-decoration: none;
     width: fit-content;
     .textContainer {
@@ -107,16 +107,16 @@
 
             .textTwo {
                 letter-spacing: 4px;
-                font-size: 16px;
+                font-size: 18px;
                 color: #fff;
             }
         }
 
         .subText {
-            letter-spacing: 0px;
+            letter-spacing: 2px;
             padding: 0px 4px;
             font-weight: bold;
-            font-size: 8px;
+            font-size: 12px;
             color: #000;
         }
     }
@@ -131,7 +131,7 @@
 .white {
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
     text-decoration: none;
     width: fit-content;
     .textContainer {
@@ -149,16 +149,16 @@
 
             .textTwo {
                 letter-spacing: 4px;
-                font-size: 16px;
+                font-size: 18px;
                 color: #000;
             }
         }
 
         .subText {
-            letter-spacing: 0px;
+            letter-spacing: 2px;
             padding: 0px 4px;
             font-weight: bold;
-            font-size: 8px;
+            font-size: 12px;
             color: #fff;
         }
     }

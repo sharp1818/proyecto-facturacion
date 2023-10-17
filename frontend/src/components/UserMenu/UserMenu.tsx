@@ -8,47 +8,45 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../features/authSlice';
-
+import { logoutUser } from '../../services/auth_services/auth.services';
 
 interface Props {
   name: string | undefined | any
 }
 
 const UserMenuComponent: React.FC<Props> = ({ name }) => {
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
   const navigate = useNavigate()
-  const handleProfile = () => {
-    navigate('/profile');
+
+  const handleProducts = () => {
+    navigate('/products');
   }
-  const handleAddress = () => {
-    navigate('/address');
+  const handleFamilyProducts = () => {
+    navigate('/family-products');
   }
-  const handleOrders= () => {
-    navigate('/orders');
+  const handleInvoices= () => {
+    navigate('/invoices');
   }
-  const handlePreSales= () => {
-    navigate('/pre-sales');
-  }
+
   const handleLogout = async () => {
     //------- LOGOUT -------
-    // try {
-    //   await signOut(auth);
-    //   dispatch(logout());
-    //   navigate('/login');
-    // } catch (error) {
+    try {
+      await logoutUser();
+      dispatch(logout());
+      navigate('/login');
+    } catch (error) {
 
-    // }
+    }
   };
   return (
     <div>
       <Menu menuButton={<Button><span className={styleMenu.buttonUserText}><CoPresentIcon />{name}</span></Button>}
         direction={'bottom'}
       >
-        <MenuItem onClick={handleProfile}>Mis datos</MenuItem>
-        <MenuItem onClick={handleAddress}>Mis direcciones</MenuItem>
-        <MenuItem onClick={handleOrders}>Mis pedidos</MenuItem>
-        <MenuItem onClick={handlePreSales}>Mis preventas</MenuItem>
+        <MenuItem onClick={handleProducts}>Productos</MenuItem>
+        <MenuItem onClick={handleFamilyProducts}>Familia de productos</MenuItem>
+        <MenuItem onClick={handleInvoices}>Facturas</MenuItem>
         <Divider />
         <MenuItem onClick={handleLogout}><span className={styleMenu.logout}><LogoutIcon />Cerrar sesión</span></MenuItem>
       </Menu>

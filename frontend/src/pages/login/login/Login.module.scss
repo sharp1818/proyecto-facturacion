@@ -4,7 +4,7 @@
 
 .directionRow {
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(1, 1fr) !important;
     justify-items: center !important;
 }
 @media screen and (max-width: 500px) {

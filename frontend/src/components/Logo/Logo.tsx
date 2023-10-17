@@ -22,10 +22,10 @@ const Logo = (props: Props) => {
             onClick={props.onClick}>
             <div className={styleLogo.textContainer}>
                 <div className={styleLogo.bgTextLogo}>
-                    <div className={styleLogo.textOne}>PAPURRI</div>
-                    <div className={styleLogo.textTwo}>STORE.COM</div>
+                    <div className={styleLogo.textOne}>CITIKOLD</div>
+                    <div className={styleLogo.textTwo}>GROUP S.A.</div>
                 </div>
-                <div className={styleLogo.subText}>Juegos de cartas coleccionables</div>
+                <div className={styleLogo.subText}>Agencia marítima</div>
             </div>
             <img src={GetLogo('LOGO')} alt='logo' className={styleLogo.logo}/>
         </Link >

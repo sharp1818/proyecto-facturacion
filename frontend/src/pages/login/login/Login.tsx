@@ -5,9 +5,17 @@ import EmailIcon from '@mui/icons-material/Email';
 import HttpsIcon from '@mui/icons-material/Https';
 import LoginIcon from '@mui/icons-material/Login';
 import { Link, useNavigate } from 'react-router-dom';
+import { userLogin } from '../../../services/auth_services/auth.services';
+import { useDispatch } from 'react-redux';
+import { login } from '../../../features/authSlice';
+
+interface User {
+  email: string | undefined | any;
+}
 
 const Login = () => {
 
+  const dispatch = useDispatch();
   const navigate = useNavigate()
 
   const [email, setEmail] = useState('');
@@ -24,14 +32,16 @@ const Login = () => {
     e.preventDefault();
     try {
       //-------LOGIN-------
+      const res : any = await userLogin(email, password);
+      const userData: User = { email: res.data.email };
+      dispatch(login(userData));
       navigate("/home");
     } catch (error: any) {
       setOpen(true);
-      setMessage(error.code);
+      setMessage('Error, vuelve a ingresar credenciales');
       cleanForm();
     }
   };
-
 
   return (
     <form onSubmit={handleLogin}>
@@ -108,18 +118,6 @@ const Login = () => {
               style={{ textTransform: 'none' }}
             >
               Crear un nuevo usuario
-            </Button>
-          </Link>
-          <Link
-            to="/recover-password"
-            color='primary'
-            style={{ textDecoration: 'none' }}
-          >
-            <Button
-              variant="text"
-              style={{ textTransform: 'none' }}
-            >
-              Recuperar contraseña
             </Button>
           </Link>
         </Stack>

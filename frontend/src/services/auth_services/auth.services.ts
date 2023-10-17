@@ -7,7 +7,7 @@ interface AuthResponse {
     password: string;
 }
 
-export const login = (email: string, password: string): Promise<AuthResponse> => {
+export const userLogin = (email: string, password: string): Promise<AuthResponse> => {
     return axios.post<AuthResponse>(`${baseURL}/api/login`, { email, password })
         .then(response => {
             return response;

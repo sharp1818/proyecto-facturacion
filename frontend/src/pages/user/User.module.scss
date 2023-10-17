@@ -1,0 +1,18 @@
+.userContainer{
+    display: grid;
+    grid-template-columns: 214px 1fr;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0px 20px;
+    justify-items: center;
+}
+
+@media screen and (max-width: 600px) {
+    .userContainer{
+        grid-template-columns: 1fr;
+    }
+}
+
+.icon{
+    min-width: 30px !important;
+}

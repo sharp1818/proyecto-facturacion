@@ -3,29 +3,21 @@ import styleFooter from './Footer.module.scss';
 import ListComponent from '../List/List';
 import Logo from '../Logo/Logo';
 
-interface Props {
-    onClick: MouseEventHandler;
-    footerCards?: [
-        name: string,
-        options: { name: string, link: string }[]
-    ]
-}
-
 interface data {
     name: string,
     options: { name: string, link: string }[]
 }
 
-const Footer: React.FC<Props> = ({ onClick, footerCards }) => {
+const Footer = () => {
     const arr = [
         {
-            name: 'Papurri Store',
+            name: 'Citikold Group',
             options: [
                 { name: 'Sobre Nosotros', link: '' },
-                { name: 'YuGiOh!', link: '' },
-                { name: 'Magic the Gatering', link: '' },
-                { name: 'Weib Schwarz', link: '' },
-                { name: 'CardFight Vanguard', link: '' },
+                { name: 'Servicios en línea', link: '' },
+                { name: 'Oficina Ecuador', link: '' },
+                { name: 'Oficina Perú', link: '' },
+                { name: 'CTK LOGISTIC S.A.', link: '' },
             ]
         },
         {
@@ -52,13 +44,13 @@ const Footer: React.FC<Props> = ({ onClick, footerCards }) => {
     return (
         <footer className={styleFooter.footer}>
             <div className={styleFooter.list}>
-                <Logo onClick={onClick} className={'white'} />
+                <Logo className={'white'} />
                 {arr.map((data: data, index) => (
                     <ListComponent key={index} name={data.name} options={data.options}/>
                 ))}
             </div>
             <div className={styleFooter.copyright}>
-                © 2023 Papurri website todos los derechos reservados
+                © 2023 Citikold Group website todos los derechos reservados
             </div>
         </footer>
     );
