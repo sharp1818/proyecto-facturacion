@@ -11,7 +11,7 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { checkUserAuthentication } from './services/auth_services';
+import { login, register, logoutUser, checkUserAuthentication } from './services/auth_services/auth.services';
 
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -22,7 +22,6 @@ const ga = () => {
 }
 
 function App() {
-  const baseURL = 'http://127.0.0.1:8000';
   const [currentUser, setCurrentUser]: any = useState();
   const [registrationToggle, setRegistrationToggle] = useState(false);
   const [email, setEmail] = useState('');
@@ -30,16 +29,20 @@ function App() {
   const [password, setPassword] = useState('');
 
   useEffect(() => {
-    axios.get(`${baseURL}/api/user`)
-      .then(function (res) {
-        console.log('res-->', res)
-        setCurrentUser(true);
-      })
-      .catch(function (error) {
-        console.log('error-->', error)
-        setCurrentUser(false);
-      });
+    const fetchAuth = async () => {
+      try {
+        const response = await checkUserAuthentication();
+        if (response.status === 200) {
+          setCurrentUser(true);
+        } else {
+          setCurrentUser(false);
+        }
+      } catch (error) {
+      }
+    };
+    fetchAuth();
   }, []);
+
 
   function update_form_btn() {
     const formBtn = document.getElementById("form_btn");
@@ -54,50 +57,37 @@ function App() {
     }
   }
 
-  function submitRegistration(e: any) {
+  const submitRegistration = (e: any) => {
     e.preventDefault();
-    axios.post(
-      `${baseURL}/api/register`,
-      {
-        email: email,
-        username: username,
-        password: password
-      }
-    ).then(function (res) {
-      axios.post(
-        `${baseURL}/api/login`,
-        {
-          email: email,
-          password: password
+    register(email, username, password)
+      .then((res: any) => {
+        if (res.status === 200) {
+          login(email, password)
+            .then((res) => {
+              setCurrentUser(true);
+            });
         }
-      ).then(function (res) {
+      })
+      .catch(error => {
+
+      });
+  }
+
+  const submitLogin = (e: any) => {
+    e.preventDefault();
+    login(email, password)
+      .then(function (res) {
+        console.log(res)
         setCurrentUser(true);
       });
-    });
   }
 
-  function submitLogin(e: any) {
+  const submitLogout = (e: any) => {
     e.preventDefault();
-    axios.post(
-      `${baseURL}/api/login`,
-      {
-        email: email,
-        password: password
-      }
-    ).then(function (res) {
-      console.log(res)
-      setCurrentUser(true);
-    });
-  }
-
-  function submitLogout(e: any) {
-    e.preventDefault();
-    axios.post(
-      `${baseURL}/api/logout`,
-      { withCredentials: true }
-    ).then(function (res) {
-      setCurrentUser(false);
-    });
+    logoutUser()
+      .then(function (res) {
+        setCurrentUser(false);
+      });
   }
 
   if (currentUser) {
