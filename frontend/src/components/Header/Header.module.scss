@@ -1,0 +1,30 @@
+.header {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 8px 20px;
+}
+
+@media screen and (max-width: 1100px) {
+    .header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        padding: 8px 20px;
+
+        .filterInput {
+            grid-row-start: 2;
+            grid-column-start: 1;
+            grid-row-end: 3;
+            grid-column-end: 3;
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .header {
+        gap: 10px;
+    }
+}

@@ -1,0 +1,24 @@
+.buttonUserText{
+    width:200px;
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+}
+
+.logout{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    color: #ff2222;
+}
+
+@media screen and (max-width: 700px) {
+    .buttonUserText{
+        width:100px;
+    }
+}

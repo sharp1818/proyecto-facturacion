@@ -1,0 +1,23 @@
+.bgNav{
+    background-color: #2a65ae2c;
+}
+
+.mobile{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8px 20px;
+}
+
+.desktop{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 8px 20px;
+    .navBar{
+        display: flex;
+    }
+}

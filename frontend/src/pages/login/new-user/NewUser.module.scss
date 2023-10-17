@@ -1,0 +1,25 @@
+.formContainer{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+.newUserForm{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    padding-bottom: 10px;
+}
+
+@media screen and (max-width: 500px) {
+    .newUserForm{
+        display: grid;
+        grid-template-columns: 1fr !important;
+        gap: 18px;
+    }
+}
+
+.buttonContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

@@ -1,0 +1,171 @@
+.mobileBlack {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    text-decoration: none;
+    width: fit-content;
+    .textContainer {
+        .bgTextLogo {
+            background-color: #000;
+            padding: 4px 4px 10px 4px;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+
+            .textOne {
+                letter-spacing: 4px;
+                font-weight: bold;
+                font-size: 14px;
+                color: #fff;
+            }
+
+            .textTwo {
+                letter-spacing: 4px;
+                font-size: 10px;
+                color: #fff;
+            }
+        }
+
+        .subText {
+            display: none;
+            letter-spacing: 0px;
+            padding: 0px 4px;
+            font-weight: bold;
+            font-size: 6px;
+            color: #000;
+        }
+    }
+
+    .logo {
+        display: none;
+        position: relative;
+        right: 16px;
+        height: 48px;
+    }
+}
+
+.mobileWhite {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    text-decoration: none;
+    width: fit-content;
+    .textContainer {
+        .bgTextLogo {
+            background-color: #fff;
+            padding: 4px 4px 10px 4px;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+
+            .textOne {
+                letter-spacing: 4px;
+                font-weight: bold;
+                font-size: 14px;
+                color: #000;
+            }
+
+            .textTwo {
+                letter-spacing: 4px;
+                font-size: 10px;
+                color: #000;
+            }
+        }
+
+        .subText {
+            display: none;
+            letter-spacing: 0px;
+            padding: 0px 4px;
+            font-weight: bold;
+            font-size: 6px;
+            color: #fff;
+        }
+    }
+
+    .logo {
+        display: none;
+        position: relative;
+        right: 16px;
+        height: 48px;
+    }
+}
+
+.black {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    text-decoration: none;
+    width: fit-content;
+    .textContainer {
+        .bgTextLogo {
+            background-color: #000;
+            padding: 4px 18px 10px 4px;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+
+            .textOne {
+                letter-spacing: 4px;
+                font-weight: bold;
+                font-size: 22px;
+                color: #fff;
+            }
+
+            .textTwo {
+                letter-spacing: 4px;
+                font-size: 16px;
+                color: #fff;
+            }
+        }
+
+        .subText {
+            letter-spacing: 0px;
+            padding: 0px 4px;
+            font-weight: bold;
+            font-size: 8px;
+            color: #000;
+        }
+    }
+
+    .logo {
+        position: relative;
+        right: 18px;
+        height: 80px;
+    }
+}
+
+.white {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    text-decoration: none;
+    width: fit-content;
+    .textContainer {
+        .bgTextLogo {
+            background-color: #fff;
+            padding: 4px 18px 10px 4px;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+
+            .textOne {
+                letter-spacing: 4px;
+                font-weight: bold;
+                font-size: 22px;
+                color: #000;
+            }
+
+            .textTwo {
+                letter-spacing: 4px;
+                font-size: 16px;
+                color: #000;
+            }
+        }
+
+        .subText {
+            letter-spacing: 0px;
+            padding: 0px 4px;
+            font-weight: bold;
+            font-size: 8px;
+            color: #fff;
+        }
+    }
+
+    .logo {
+        position: relative;
+        right: 18px;
+        height: 80px;
+    }
+}
