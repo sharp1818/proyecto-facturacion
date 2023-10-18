@@ -33,12 +33,14 @@ const Login = () => {
     try {
       //-------LOGIN-------
       const res : any = await userLogin(email, password);
-      const userData: User = { email: res.data.email };
-      dispatch(login(userData));
-      navigate("/home");
-      if (res.response.status === 400) {
-        throw new Error(res.response.data.detail);
+      if(res.status === 200){
+        const userData: User = { email: res?.data?.email };
+        dispatch(login(userData));
+        navigate("/home");
       }
+      if (res.response.status >= 400) {
+        throw new Error(res?.response?.data?.detail);
+      } 
     } catch (error: any) {
       setOpen(true);
       setMessage(error.message);
