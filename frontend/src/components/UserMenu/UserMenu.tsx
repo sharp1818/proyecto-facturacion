@@ -44,9 +44,9 @@ const UserMenuComponent: React.FC<Props> = ({ name }) => {
       <Menu menuButton={<Button><span className={styleMenu.buttonUserText}><CoPresentIcon />{name}</span></Button>}
         direction={'bottom'}
       >
-        <MenuItem onClick={handleProducts}>Productos</MenuItem>
-        <MenuItem onClick={handleFamilyProducts}>Familia de productos</MenuItem>
-        <MenuItem onClick={handleInvoices}>Facturas</MenuItem>
+        <MenuItem onClick={e=>handleProducts()}>Productos</MenuItem>
+        <MenuItem onClick={e=>handleFamilyProducts()}>Familia de productos</MenuItem>
+        <MenuItem onClick={e=>handleInvoices()}>Facturas</MenuItem>
         <Divider />
         <MenuItem onClick={handleLogout}><span className={styleMenu.logout}><LogoutIcon />Cerrar sesión</span></MenuItem>
       </Menu>
