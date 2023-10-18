@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.contrib.auth import get_user_model
 
 class AppUserManager(BaseUserManager):
 	def create_user(self, email, password=None):
@@ -33,3 +34,8 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
 	objects = AppUserManager()
 	def __str__(self):
 		return self.username
+
+class FailedLoginAttempt(models.Model):
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    attempts = models.PositiveIntegerField(default=1)

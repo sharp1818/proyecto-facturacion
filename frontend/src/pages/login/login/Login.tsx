@@ -33,12 +33,15 @@ const Login = () => {
     try {
       //-------LOGIN-------
       const res : any = await userLogin(email, password);
+      if (res.response.status === 400) {
+        throw new Error(res.response.data.detail);
+      }
       const userData: User = { email: res.data.email };
       dispatch(login(userData));
       navigate("/home");
     } catch (error: any) {
       setOpen(true);
-      setMessage('Error, vuelve a ingresar credenciales');
+      setMessage(error.message);
       cleanForm();
     }
   };
