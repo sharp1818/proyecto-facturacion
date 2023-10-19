@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'auth_api.apps.AuthApiConfig',
     'products_api.apps.ProductsApiConfig',
+    'invoice_api.apps.InvoiceApiConfig',
 ]
 
 MIDDLEWARE = [
