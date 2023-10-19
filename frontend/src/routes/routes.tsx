@@ -22,7 +22,6 @@ const AppRoutes: React.FC = () => {
     <Routes>
       <Route path="/" element={<Home />} />
   
-      {/* <Route path="/product/:productName" element={<ProductCard />} /> */}
       {!isAuthenticated && (
         <>
           <Route path="/login" element={<Login />} />
