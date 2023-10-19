@@ -28,6 +28,9 @@ const UserMenuComponent: React.FC<Props> = ({ name }) => {
   const handleInvoices= () => {
     navigate('/invoices');
   }
+  const handleInvoicing= () => {
+    navigate('/invoicing');
+  }
 
   const handleLogout = async () => {
     //------- LOGOUT -------
@@ -47,6 +50,7 @@ const UserMenuComponent: React.FC<Props> = ({ name }) => {
         <MenuItem onClick={e=>handleProducts()}>Productos</MenuItem>
         <MenuItem onClick={e=>handleFamilyProducts()}>Familia de productos</MenuItem>
         <MenuItem onClick={e=>handleInvoices()}>Facturas</MenuItem>
+        <MenuItem onClick={e=>handleInvoicing()}>Emitir Factura</MenuItem>
         <Divider />
         <MenuItem onClick={handleLogout}><span className={styleMenu.logout}><LogoutIcon />Cerrar sesión</span></MenuItem>
       </Menu>

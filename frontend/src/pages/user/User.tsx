@@ -1,14 +1,11 @@
 import { Divider, List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
-import HomeIcon from '@mui/icons-material/Home';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import BusAlertIcon from '@mui/icons-material/BusAlert';
 import styleUser from './User.module.scss'
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import ReceiptIcon from '@mui/icons-material/Receipt';
+import LocalPrintshopIcon from '@mui/icons-material/LocalPrintshop';
 
 const User = () => {
   const navigate = useNavigate()
@@ -21,29 +18,38 @@ const User = () => {
   const handleInvoices= () => {
     navigate('/invoices');
   }
+  const handleInvoicing= () => {
+    navigate('/invoicing');
+  }
   return (
     <div className={styleUser.userContainer}>
       <List
         sx={{ width: '100%', bgcolor: 'background.paper'}}
         component="nav"
       >
-        <ListItemButton >
+        <ListItemButton onClick={handleProducts} >
           <ListItemIcon className={styleUser.icon}>
             <PostAddIcon />
           </ListItemIcon>
-          <ListItemText primary="Productos" onClick={handleProducts} />
+          <ListItemText primary="Productos" />
         </ListItemButton>
-        <ListItemButton>
+        <ListItemButton onClick={handleFamilyProducts}>
           <ListItemIcon className={styleUser.icon}>
             <AddToPhotosIcon />
           </ListItemIcon>
-          <ListItemText primary="Familia de productos" onClick={handleFamilyProducts} />
+          <ListItemText primary="Familia de productos" />
         </ListItemButton>
-        <ListItemButton>
+        <ListItemButton onClick={handleInvoices}>
           <ListItemIcon className={styleUser.icon}>
             <ReceiptIcon />
           </ListItemIcon>
-          <ListItemText primary="Facturas" onClick={handleInvoices} />
+          <ListItemText primary="Facturas" />
+        </ListItemButton>
+        <ListItemButton onClick={handleInvoicing}>
+          <ListItemIcon className={styleUser.icon}>
+            <LocalPrintshopIcon />
+          </ListItemIcon>
+          <ListItemText primary="Emitir Factura" />
         </ListItemButton>
       </List>
       <Outlet/>
