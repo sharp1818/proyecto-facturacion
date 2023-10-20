@@ -3,11 +3,11 @@ import axios from 'axios';
 const baseURL = 'http://127.0.0.1:8000';
 
 interface ProductFamily {
-    family_id?: number,
+    family_id?: number | string,
     code: string,
     name: string,
     is_active: boolean,
-    creation_date: string
+    creation_date?: string
 }
 
 interface Product {
@@ -21,8 +21,8 @@ interface Product {
     family: number,
 }
 
-export const productFamilyItems = (): Promise<ProductFamily[]> => {
-    return axios.get<ProductFamily[]>(`${baseURL}/api/product_family/v1/product_family/`)
+export const productFamilyItems = (page: number): Promise<ProductFamily[]> => {
+    return axios.get<ProductFamily[]>(`${baseURL}/api/product_family/v1/product_family/?page=${page}`)
         .then(response => {
             return response;
         })
@@ -32,7 +32,7 @@ export const productFamilyItems = (): Promise<ProductFamily[]> => {
 };
 
 export const productFamilyItem = (family_id:number): Promise<ProductFamily> => {
-    return axios.get<ProductFamily>(`${baseURL}/api/product_family/v1/product_family/${family_id}`)
+    return axios.get<ProductFamily>(`${baseURL}/api/product_family/v1/product_family/${family_id}/`)
         .then(response => {
             return response;
         })
@@ -52,7 +52,7 @@ export const productFamilyNewItem = (product_family: ProductFamily) => {
 };
 
 export const productFamilyUpdateItem = (family_id:number, product_family: ProductFamily) => {
-    return axios.post(`${baseURL}/api/product_family/v1/product_family/${family_id}`, product_family)
+    return axios.put(`${baseURL}/api/product_family/v1/product_family/${family_id}/`, product_family)
         .then(response => {
             return response;
         })
@@ -62,7 +62,7 @@ export const productFamilyUpdateItem = (family_id:number, product_family: Produc
 };
 
 export const productFamilyDeleteItem = (family_id:number) => {
-    return axios.post(`${baseURL}/api/product_family/v1/product_family/${family_id}`)
+    return axios.delete(`${baseURL}/api/product_family/v1/product_family/${family_id}/`)
         .then(response => {
             return response;
         })
@@ -102,7 +102,7 @@ export const productNewItem = (product: Product) => {
 };
 
 export const productpdateItem = (product_id:number, product: Product) => {
-    return axios.post(`${baseURL}/api/product/v1/product/${product_id}`, product)
+    return axios.put(`${baseURL}/api/product/v1/product/${product_id}`, product)
         .then(response => {
             return response;
         })
@@ -112,7 +112,7 @@ export const productpdateItem = (product_id:number, product: Product) => {
 };
 
 export const productDeleteItem = (product_id:number) => {
-    return axios.post(`${baseURL}/api/product/v1/product/${product_id}`)
+    return axios.delete(`${baseURL}/api/product/v1/product/${product_id}`)
         .then(response => {
             return response;
         })
