@@ -11,14 +11,14 @@ interface ProductFamily {
 }
 
 interface Product {
-    product_id?: number,
+    product_id?: number | string,
     code: string,
     name: string,
     price: string,
-    stock: number,
+    stock: number | string,
     is_active: boolean,
     creation_date?: string,
-    family: number,
+    family: number | string | null | any,
 }
 
 
@@ -122,7 +122,7 @@ export const productNewItem = (product: Product) => {
         });
 };
 
-export const productpdateItem = (product_id:number, product: Product) => {
+export const productUpdateItem = (product_id:number, product: Product) => {
     return axios.put(`${baseURL}/api/product/v1/product/${product_id}/`, product)
         .then(response => {
             return response;
