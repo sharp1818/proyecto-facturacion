@@ -10,7 +10,7 @@ const InvoicingNewItem = () => {
       <Typography variant="h5" gutterBottom>
         Emitir Facturas
       </Typography>
-      NUEVO EMITIR FACTURAS
+      NUEVO DETALLE DE FACTURA
     </div>
   );
 };

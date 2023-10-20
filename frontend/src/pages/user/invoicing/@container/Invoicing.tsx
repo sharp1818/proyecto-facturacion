@@ -10,7 +10,7 @@ const Invoicing = () => {
       <Typography variant="h5" gutterBottom>
         Emitir Facturas
       </Typography>
-      CRUD PARA EMITIR FACTURAS
+      CRUD PARA DETALLE DE FACTURA
     </div>
   );
 };

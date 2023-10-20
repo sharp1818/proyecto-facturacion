@@ -79,7 +79,7 @@ const User = () => {
           <ListItemIcon className={styleUser.icon}>
             <LocalPrintshopIcon />
           </ListItemIcon>
-          <ListItemText primary="Emitir Factura" />
+          <ListItemText primary="Detalle de factura" />
         </ListItemButton>
       </List>
     </Box>
