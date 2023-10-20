@@ -74,7 +74,7 @@ export const invoiceUpdateItem = (id:number, invoice: Invoice) => {
 };
 
 export const invoiceDeleteItem = (id:number) => {
-    return axios.delete(`${baseURL}/api/invoice/v1/invoice/${id}/`)
+    return axios.delete(`${baseURL}/api/invoice/v1/invoice/${id}`)
         .then(response => {
             return response;
         })
