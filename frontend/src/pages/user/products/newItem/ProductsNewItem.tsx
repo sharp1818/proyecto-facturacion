@@ -86,7 +86,16 @@ const ProductsNewItem = () => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value as string });
+    let sanitizedValue = value;
+
+    if (name === "price") {
+      sanitizedValue = value.replace(/[^0-9.]/g, "");
+    }
+    if (name === "stock") {
+      sanitizedValue = value.replace(/[^0-9]/g, "");
+    }
+
+    setFormData({ ...formData, [name]: sanitizedValue });
   };
 
   const handleSelectChange = (event: SelectChangeEvent<string>) => {
