@@ -18,7 +18,7 @@ interface InvoiceItem {
     product_code: string,
     product_name: string,
     price: string,
-    quantity: string,
+    quantity: string | number | any,
     subtotal: string,
     invoice: number | string | null | any,
 }

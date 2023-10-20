@@ -102,8 +102,8 @@ const FamilyProducts = () => {
         <Table sx={{ minWidth: 700 }} size="small">
           <TableHead>
             <TableRow>
-              <TableCell>Nombre</TableCell>
-              <TableCell align="right">Family ID</TableCell>
+              <TableCell>Family ID</TableCell>
+              <TableCell align="right">Nombre</TableCell>
               <TableCell align="right">Estado</TableCell>
               <TableCell align="right">Codigo</TableCell>
               <TableCell align="right">Fecha de creacion</TableCell>
@@ -117,9 +117,9 @@ const FamilyProducts = () => {
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {row.name}
+                  {row.family_id}
                 </TableCell>
-                <TableCell align="right">{row.family_id}</TableCell>
+                <TableCell align="right">{row.name}</TableCell>
                 <TableCell align="right">{row.is_active ? <Chip label="Activo" color="success" /> : <Chip label="Inactivo" color="error" />}</TableCell>
                 <TableCell align="right">{row.code}</TableCell>
                 <TableCell align="right">{row.creation_date}</TableCell>

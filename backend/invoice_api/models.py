@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
 
 class Invoice(models.Model):
     id = models.AutoField(primary_key=True)
@@ -16,7 +18,7 @@ class Invoice(models.Model):
 class InvoiceItem(models.Model):
     id = models.AutoField(primary_key=True)
     invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE, related_name='items')
-    product_code = models.CharField(max_length=20, unique=True)
+    product_code = models.CharField(max_length=20)
     product_name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.DecimalField(max_digits=5, decimal_places=2, default=1)

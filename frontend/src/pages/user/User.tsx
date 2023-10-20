@@ -5,8 +5,9 @@ import styleUser from './User.module.scss'
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import ReceiptIcon from '@mui/icons-material/Receipt';
-import LocalPrintshopIcon from '@mui/icons-material/LocalPrintshop';
 import MenuIcon from '@mui/icons-material/Menu';
+import NotesIcon from '@mui/icons-material/Notes';
+
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
@@ -77,7 +78,7 @@ const User = () => {
         </ListItemButton>
         <ListItemButton onClick={handleInvoicing}>
           <ListItemIcon className={styleUser.icon}>
-            <LocalPrintshopIcon />
+            <NotesIcon />
           </ListItemIcon>
           <ListItemText primary="Detalle de factura" />
         </ListItemButton>

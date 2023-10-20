@@ -132,8 +132,8 @@ const Products = () => {
         <Table sx={{ minWidth: 700 }} size="small">
           <TableHead>
             <TableRow>
-              <TableCell>Nombre</TableCell>
-              <TableCell align="right">Product ID</TableCell>
+              <TableCell>Product ID</TableCell>
+              <TableCell align="right">Nombre</TableCell>
               <TableCell align="right">Precio</TableCell>
               <TableCell align="right">Stock</TableCell>
               <TableCell align="right">Familia</TableCell>
@@ -150,9 +150,9 @@ const Products = () => {
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {row.name}
+                  {row.product_id}
                 </TableCell>
-                <TableCell align="right">{row.product_id}</TableCell>
+                <TableCell align="right">{row.name}</TableCell>
                 <TableCell align="right">{row.price}</TableCell>
                 <TableCell align="right">{row.stock}</TableCell>
                 <TableCell align="right">{getFamilyName(row.family)}</TableCell>

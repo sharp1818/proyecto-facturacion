@@ -25,7 +25,7 @@ const ProductsNewItem = () => {
     try {
       const response: any = await productFamilyAllItems();
       if (response.status === 200) {
-        productFamily.setNewValue(response.data.filter((item: ProductFamily) => item.is_active === true).map((item: ProductFamily) => ({
+        productFamily.setNewValue(response.data.map((item: ProductFamily) => ({
           family_id: item.family_id,
           name: item.name,
         })))
@@ -55,6 +55,9 @@ const ProductsNewItem = () => {
           const response: any = await productItem(id);
           if (response.status === 200) {
             product.setNewValue(response.data)
+            const familyValue = productFamily.value.find(
+              (family: ProductFamily) => family.family_id === response.data.family
+            );
             setFormData({
               product_id: response.data.product_id,
               code: response.data.code,
@@ -62,7 +65,7 @@ const ProductsNewItem = () => {
               price: response.data.price,
               stock: response.data.stock,
               is_active: response.data.is_active,
-              family: response.data.family,
+              family: familyValue ? response.data.family : '',
             });
           }
         } catch (error) {
@@ -229,11 +232,12 @@ const ProductsNewItem = () => {
           <Button
             disabled={
               !(formData.code &&
+                formData.code.length <= 15 &&
                 formData.name &&
                 formData.price &&
                 formData.stock &&
-                formData.is_active &&
-                formData.family)
+                formData.family &&
+                formData.is_active)
             }
             type="submit"
             variant="contained"

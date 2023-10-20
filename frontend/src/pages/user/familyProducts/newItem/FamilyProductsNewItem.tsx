@@ -141,8 +141,8 @@ const FamilyProductsNewItem = () => {
           <Button
             disabled={
               !(formData.code &&
-                formData.name &&
-                formData.is_active)
+                formData.code.length <=15 &&
+                formData.name)
             }
             type="submit"
             variant="contained"

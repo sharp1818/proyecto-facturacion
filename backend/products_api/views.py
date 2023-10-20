@@ -15,7 +15,7 @@ class ProductView(viewsets.ModelViewSet):
         if 'page' in request.query_params:
             return super().list(request, *args, **kwargs)
         else:
-            queryset = self.filter_queryset(self.get_queryset())  
+            queryset = self.filter_queryset(self.get_queryset().filter(is_active=True))  
             serializer = self.get_serializer(queryset, many=True)
             return Response(serializer.data)
 
@@ -27,6 +27,6 @@ class ProductFamilyView(viewsets.ModelViewSet):
         if 'page' in request.query_params:
             return super().list(request, *args, **kwargs)
         else:
-            queryset = self.filter_queryset(self.get_queryset())  
+            queryset = self.filter_queryset(self.get_queryset().filter(is_active=True))  
             serializer = self.get_serializer(queryset, many=True)
             return Response(serializer.data)
