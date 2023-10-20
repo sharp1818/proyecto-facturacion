@@ -135,10 +135,19 @@ const FamilyProductsNewItem = () => {
           alignItems="center"
           spacing={2}
         >
-          <Button onClick={()=>{navigate('/family-products')}} variant="outlined" color="error">
+          <Button onClick={() => { navigate('/family-products') }} variant="outlined" color="error">
             Cancelar
           </Button>
-          <Button type="submit" variant="contained" color="primary">
+          <Button
+            disabled={
+              !(formData.code &&
+                formData.name &&
+                formData.is_active)
+            }
+            type="submit"
+            variant="contained"
+            color="primary"
+          >
             Guardar
           </Button>
         </Stack>

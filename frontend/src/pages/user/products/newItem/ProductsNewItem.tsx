@@ -119,7 +119,7 @@ const ProductsNewItem = () => {
         Catálogo
       </Typography>
       <Typography variant="h5" gutterBottom>
-        Productos
+        {isEdit.value ? 'Editar' : 'Agregar'} producto
       </Typography>
       <br />
       <form onSubmit={handleSubmit}>
@@ -217,7 +217,19 @@ const ProductsNewItem = () => {
           <Button onClick={() => { navigate('/products') }} variant="outlined" color="error">
             Cancelar
           </Button>
-          <Button type="submit" variant="contained" color="primary">
+          <Button
+            disabled={
+              !(formData.code &&
+                formData.name &&
+                formData.price &&
+                formData.stock &&
+                formData.is_active &&
+                formData.family)
+            }
+            type="submit"
+            variant="contained"
+            color="primary"
+          >
             Guardar
           </Button>
         </Stack>
