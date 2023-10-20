@@ -277,15 +277,14 @@ const InvoicingNewItem = () => {
             Cancelar
           </Button>
           <Button
-            // disabled={
-            //   !(formData.id &&
-            //     formData.product_code &&
-            //     formData.product_name &&
-            //     formData.price &&
-            //     formData.quantity &&
-            //     formData.subtotal &&
-            //     formData.invoice)
-            // }
+            disabled={
+              !(formData.product_code &&
+                formData.product_name &&
+                formData.price &&
+                formData.quantity &&
+                formData.subtotal &&
+                formData.invoice)
+            }
             type="submit"
             variant="contained"
             color="primary"
