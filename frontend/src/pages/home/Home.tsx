@@ -11,7 +11,7 @@ const Home = () => {
             padding: '24px',
             marginBottom: '24px',
             textAlign: 'center',
-            backgroundColor: '#b8c7df',
+            backgroundColor: '#f3f8ff',
           }}
         >
           <Typography variant="h4">Bienvenidos a Nuestra Agencia Marítima</Typography>
@@ -27,7 +27,7 @@ const Home = () => {
                 padding: '24px',
                 marginBottom: '24px',
                 textAlign: 'center',
-                backgroundColor: '#b8c7df',
+                backgroundColor: '#f3f8ff',
               }}
             >
               <Typography variant="h5">Nuestros Servicios</Typography>
@@ -42,7 +42,7 @@ const Home = () => {
                 padding: '24px',
                 marginBottom: '24px',
                 textAlign: 'center',
-                backgroundColor: '#b8c7df',
+                backgroundColor: '#f3f8ff',
               }}
             >
               <Typography variant="h5">Envíos Internacionales</Typography>
@@ -58,7 +58,7 @@ const Home = () => {
             padding: '24px',
             marginBottom: '24px',
             textAlign: 'center',
-            backgroundColor: '#b8c7df',
+            backgroundColor: '#f3f8ff',
           }}
         >
           <Typography variant="h4">Nuestra Flota</Typography>
@@ -71,7 +71,7 @@ const Home = () => {
           style={{
             padding: '24px',
             textAlign: 'center',
-            backgroundColor: '#b8c7df',
+            backgroundColor: '#f3f8ff',
           }}
         >
           <Typography variant="h4">Contáctanos</Typography>
