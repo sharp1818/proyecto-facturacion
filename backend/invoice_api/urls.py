@@ -1,6 +1,7 @@
 from django.urls import include, path
 from rest_framework import routers
 from invoice_api import views
+from .views import InvoiceItemsByInvoice
 
 router_invoice = routers.DefaultRouter()
 router_invoice.register(r"invoice", views.InvoiceView, "invoice")
@@ -11,4 +12,5 @@ router_invoice_item.register(r"invoice_item", views.InvoiceItemView, "invoice_it
 urlpatterns = [
     path("invoice/v1/", include(router_invoice.urls)),
     path("invoice_item/v1/", include(router_invoice_item.urls)),
+    path('invoice-items/<int:invoice_id>/', InvoiceItemsByInvoice.as_view()),
 ]

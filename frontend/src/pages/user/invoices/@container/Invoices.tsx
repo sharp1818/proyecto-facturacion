@@ -1,11 +1,13 @@
 import { Box, Button, Modal, Pagination, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Invoices.module.scss'
 import { useNavigate } from 'react-router-dom';
 import useInput from '../../../../hooks/useInput';
 import { invoiceDeleteItem, invoiceItems } from '../../../../services/invoice_services/invoice.services';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import DeleteIcon from '@mui/icons-material/Delete';
+import LocalPrintshopIcon from '@mui/icons-material/LocalPrintshop';
+import VoucherComponent from '../../../../components/Voucher/Voucher';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -38,6 +40,16 @@ const Invoices = () => {
   const page = useInput(1);
   const idModal = useInput(Number);
   const [open, setOpen] = React.useState(false);
+  const rowInvoiceData = useInput({});
+  const [openVoucher, setOpenVoucher] = useState(false);
+
+  const handleOpenVoucher = () => {setOpenVoucher(true)};
+  const handleCloseVoucher = () => {setOpenVoucher(false)};
+
+  const printVoucher = (row: Invoice) => {
+    handleOpenVoucher()
+    rowInvoiceData.setNewValue(row);
+  };
   const handleOpen = (id: number) => {
     setOpen(true);
     idModal.setNewValue(id);
@@ -128,6 +140,7 @@ const Invoices = () => {
                 <TableCell align="right">{row.total}</TableCell>
                 <TableCell align="right">
                   <Stack direction="row" justifyContent="flex-end">
+                    <Button onClick={() => printVoucher(row)} color='primary'><LocalPrintshopIcon /></Button>
                     <Button onClick={() => handleOpen(Number(row.id))} color='error'><DeleteIcon /></Button>
                   </Stack>
                 </TableCell>
@@ -174,6 +187,11 @@ const Invoices = () => {
           </Stack>
         </Box>
       </Modal>
+      <VoucherComponent
+        open={openVoucher}
+        handleClose={handleCloseVoucher}
+        rowData={rowInvoiceData.value}
+      />
     </div>
   );
 };

@@ -142,3 +142,13 @@ export const invoiceItemDeleteItem = (id:number) => {
             return error;
         });
 };
+
+export const invoiceItemsByInvoice = (id:number | string ) => {
+    return axios.get(`${baseURL}/api/invoice-items/${id}/`)
+        .then(response => {
+            return response;
+        })
+        .catch(error => {
+            return error;
+        });
+};
