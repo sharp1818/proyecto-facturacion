@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'coreapi',
     'corsheaders',
+    'django_filters',
     'auth_api.apps.AuthApiConfig',
     'products_api.apps.ProductsApiConfig',
     'invoice_api.apps.InvoiceApiConfig',
@@ -110,6 +111,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
     ),
+    'DEFAULT_FILTER_BACKENDS': [
+       'django_filters.rest_framework.DjangoFilterBackend',
+   ],   
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }

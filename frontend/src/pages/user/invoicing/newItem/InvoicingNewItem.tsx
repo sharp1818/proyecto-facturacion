@@ -170,7 +170,7 @@ const InvoicingNewItem = () => {
         Documentos
       </Typography>
       <Typography variant="h5" gutterBottom>
-        Emitir Facturas
+        Agregar detalle de factura
       </Typography>
       <br />
       <form onSubmit={handleSubmit}>
@@ -248,12 +248,12 @@ const InvoicingNewItem = () => {
           </Grid>
           <Grid item xs={6}>
             <FormControl variant="outlined" fullWidth size="small">
-              <InputLabel>Familia</InputLabel>
+              <InputLabel>Razón social</InputLabel>
               <Select
                 value={formData.invoice}
                 onChange={handleInvoiceSelectChange}
                 name="family"
-                label="Familia"
+                label="Razón social"
                 size="small"
                 fullWidth
               >

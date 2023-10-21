@@ -32,17 +32,30 @@ export const productFamilyAllItems = (): Promise<ProductFamily[]> => {
         });
 };
 
-export const productFamilyItems = (page: number): Promise<ProductFamily[]> => {
-    return axios.get<ProductFamily[]>(`${baseURL}/api/product_family/v1/product_family/?page=${page}`)
-        .then(response => {
-            return response;
+export const productFamilyItems = (page: number, name?: string, is_active?: string): Promise<ProductFamily[]> => {
+    const filters = [];
+
+    if (name) {
+        filters.push(`name=${name}`);
+    }
+    if (is_active) {
+        filters.push(`is_active=${is_active}`);
+    }
+
+    const filtersString = filters.length > 0 ? `&${filters.join('&')}` : '';
+    const url = `${baseURL}/api/product_family/v1/product_family/?page=${page}${filtersString}`;
+
+    return axios
+        .get<ProductFamily[]>(url)
+        .then((response) => {
+            return response.data;
         })
-        .catch(error => {
-            return error;
+        .catch((error) => {
+            throw error;
         });
 };
 
-export const productFamilyItem = (family_id:number): Promise<ProductFamily> => {
+export const productFamilyItem = (family_id: number): Promise<ProductFamily> => {
     return axios.get<ProductFamily>(`${baseURL}/api/product_family/v1/product_family/${family_id}/`)
         .then(response => {
             return response;
@@ -62,7 +75,7 @@ export const productFamilyNewItem = (product_family: ProductFamily) => {
         });
 };
 
-export const productFamilyUpdateItem = (family_id:number, product_family: ProductFamily) => {
+export const productFamilyUpdateItem = (family_id: number, product_family: ProductFamily) => {
     return axios.put(`${baseURL}/api/product_family/v1/product_family/${family_id}/`, product_family)
         .then(response => {
             return response;
@@ -72,7 +85,7 @@ export const productFamilyUpdateItem = (family_id:number, product_family: Produc
         });
 };
 
-export const productFamilyDeleteItem = (family_id:number) => {
+export const productFamilyDeleteItem = (family_id: number) => {
     return axios.delete(`${baseURL}/api/product_family/v1/product_family/${family_id}/`)
         .then(response => {
             return response;
@@ -92,17 +105,30 @@ export const productAllItems = (): Promise<Product[]> => {
         });
 };
 
-export const productItems = (page: number): Promise<Product[]> => {
-    return axios.get<Product[]>(`${baseURL}/api/product/v1/product/?page=${page}`)
-        .then(response => {
-            return response;
+export const productItems = (page: number, name?: string, is_active?: string): Promise<Product[]> => {
+    const filters = [];
+
+    if (name) {
+        filters.push(`name=${name}`);
+    }
+    if (is_active) {
+        filters.push(`is_active=${is_active}`);
+    }
+
+    const filtersString = filters.length > 0 ? `&${filters.join('&')}` : '';
+    const url = `${baseURL}/api/product/v1/product/?page=${page}${filtersString}`;
+
+    return axios
+        .get<Product[]>(url)
+        .then((response) => {
+            return response.data;
         })
-        .catch(error => {
-            return error;
+        .catch((error) => {
+            throw error;
         });
 };
 
-export const productItem = (product_id:number): Promise<Product> => {
+export const productItem = (product_id: number): Promise<Product> => {
     return axios.get<Product>(`${baseURL}/api/product/v1/product/${product_id}/`)
         .then(response => {
             return response;
@@ -122,7 +148,7 @@ export const productNewItem = (product: Product) => {
         });
 };
 
-export const productUpdateItem = (product_id:number, product: Product) => {
+export const productUpdateItem = (product_id: number, product: Product) => {
     return axios.put(`${baseURL}/api/product/v1/product/${product_id}/`, product)
         .then(response => {
             return response;
@@ -132,7 +158,7 @@ export const productUpdateItem = (product_id:number, product: Product) => {
         });
 };
 
-export const productDeleteItem = (product_id:number) => {
+export const productDeleteItem = (product_id: number) => {
     return axios.delete(`${baseURL}/api/product/v1/product/${product_id}/`)
         .then(response => {
             return response;

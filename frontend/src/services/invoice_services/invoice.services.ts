@@ -33,17 +33,32 @@ export const invoiceAllItems = (): Promise<Invoice[]> => {
         });
 };
 
-export const invoiceItems = (page: number): Promise<Invoice[]> => {
-    return axios.get<Invoice[]>(`${baseURL}/api/invoice/v1/invoice/?page=${page}`)
-        .then(response => {
-            return response;
+export const invoiceItems = (page: number, client_name?: string, client_ruc?: string): Promise<Invoice[]> => {
+
+    const filters = [];
+
+    if (client_name) {
+        filters.push(`client_name=${client_name}`);
+    }
+    if (client_ruc) {
+        filters.push(`client_ruc=${client_ruc}`);
+    }
+
+    const filtersString = filters.length > 0 ? `&${filters.join('&')}` : '';
+    const url = `${baseURL}/api/invoice/v1/invoice/?page=${page}${filtersString}`;
+
+    return axios
+        .get<Invoice[]>(url)
+        .then((response) => {
+            return response.data;
         })
-        .catch(error => {
-            return error;
+        .catch((error) => {
+            throw error;
         });
+
 };
 
-export const invoiceItem = (id:number): Promise<Invoice> => {
+export const invoiceItem = (id: number): Promise<Invoice> => {
     return axios.get<Invoice>(`${baseURL}/api/invoice/v1/invoice/${id}/`)
         .then(response => {
             return response;
@@ -63,7 +78,7 @@ export const invoiceNewItem = (invoice: Invoice) => {
         });
 };
 
-export const invoiceUpdateItem = (id:number, invoice: Invoice) => {
+export const invoiceUpdateItem = (id: number, invoice: Invoice) => {
     return axios.put(`${baseURL}/api/invoice/v1/invoice/${id}/`, invoice)
         .then(response => {
             return response;
@@ -73,7 +88,7 @@ export const invoiceUpdateItem = (id:number, invoice: Invoice) => {
         });
 };
 
-export const invoiceDeleteItem = (id:number) => {
+export const invoiceDeleteItem = (id: number) => {
     return axios.delete(`${baseURL}/api/invoice/v1/invoice/${id}`)
         .then(response => {
             return response;
@@ -93,17 +108,31 @@ export const invoiceItemAllItems = (): Promise<InvoiceItem[]> => {
         });
 };
 
-export const invoiceItemItems = (page: number): Promise<InvoiceItem[]> => {
-    return axios.get<InvoiceItem[]>(`${baseURL}/api/invoice_item/v1/invoice_item/?page=${page}`)
-        .then(response => {
-            return response;
+export const invoiceItemItems = (page: number, product_name?: string, product_code?: string): Promise<InvoiceItem[]> => {
+    const filters = [];
+
+    if (product_name) {
+        filters.push(`product_name=${product_name}`);
+    }
+    if (product_code) {
+        filters.push(`product_code=${product_code}`);
+    }
+
+    const filtersString = filters.length > 0 ? `&${filters.join('&')}` : '';
+    const url = `${baseURL}/api/invoice_item/v1/invoice_item/?page=${page}${filtersString}`;
+
+    return axios
+        .get<InvoiceItem[]>(url)
+        .then((response) => {
+            return response.data;
         })
-        .catch(error => {
-            return error;
+        .catch((error) => {
+            throw error;
         });
+
 };
 
-export const invoiceItemItem = (id:number): Promise<InvoiceItem> => {
+export const invoiceItemItem = (id: number): Promise<InvoiceItem> => {
     return axios.get<InvoiceItem>(`${baseURL}/api/invoice_item/v1/invoice_item/${id}/`)
         .then(response => {
             return response;
@@ -123,7 +152,7 @@ export const invoiceItemNewItem = (invoiceItem: InvoiceItem) => {
         });
 };
 
-export const invoiceItemUpdateItem = (id:number, invoiceItem: InvoiceItem) => {
+export const invoiceItemUpdateItem = (id: number, invoiceItem: InvoiceItem) => {
     return axios.put(`${baseURL}/api/invoice_item/v1/invoice_item/${id}/`, invoiceItem)
         .then(response => {
             return response;
@@ -133,7 +162,7 @@ export const invoiceItemUpdateItem = (id:number, invoiceItem: InvoiceItem) => {
         });
 };
 
-export const invoiceItemDeleteItem = (id:number) => {
+export const invoiceItemDeleteItem = (id: number) => {
     return axios.delete(`${baseURL}/api/invoice_item/v1/invoice_item/${id}/`)
         .then(response => {
             return response;
@@ -143,7 +172,7 @@ export const invoiceItemDeleteItem = (id:number) => {
         });
 };
 
-export const invoiceItemsByInvoice = (id:number | string ) => {
+export const invoiceItemsByInvoice = (id: number | string) => {
     return axios.get(`${baseURL}/api/invoice-items/${id}/`)
         .then(response => {
             return response;

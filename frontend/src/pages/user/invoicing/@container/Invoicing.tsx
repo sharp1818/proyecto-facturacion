@@ -1,5 +1,5 @@
-import { Box, Button, Modal, Pagination, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
+import { Box, Button, Modal, Pagination, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import styles from './Invoicing.module.scss'
 import { useNavigate } from 'react-router-dom';
 import useInput from '../../../../hooks/useInput';
@@ -49,6 +49,10 @@ const Invoicing = () => {
   const page = useInput(1);
   const idModal = useInput(Number);
   const [open, setOpen] = React.useState(false);
+
+  const [codeFilter, setCodeFilter] = useState('');
+  const [nameFilter, setNameFilter] = useState('');
+
   const handleOpen = (id: number) => {
     setOpen(true);
     idModal.setNewValue(id);
@@ -72,11 +76,9 @@ const Invoicing = () => {
 
   const fetchInvoiceItem = async () => {
     try {
-      const response: any = await invoiceItemItems(page.value);
-      if (response.status === 200) {
-        page_count.setNewValue(Math.ceil(response.data.count / 10));
-        invoicesItem.setNewValue(response.data.results)
-      }
+      const response: any = await invoiceItemItems(page.value, nameFilter, codeFilter);
+      page_count.setNewValue(Math.ceil(response.count / 10));
+      invoicesItem.setNewValue(response.results)
     } catch (error) {
 
     }
@@ -119,6 +121,28 @@ const Invoicing = () => {
       </Typography>
       <Stack
         direction="row"
+        spacing={2}
+        justifyContent="flex-end"
+        alignItems="center">
+        <TextField
+          label="Código de producto"
+          value={codeFilter}
+          onChange={(e) => setCodeFilter(e.target.value)}
+          size="small"
+        />
+        <TextField
+          label="Nombre de producto"
+          value={nameFilter}
+          onChange={(e) => setNameFilter(e.target.value)}
+          size="small"
+        />
+
+        <Button variant="outlined" onClick={fetchInvoiceItem}>Buscar</Button>
+        <Button variant="outlined" onClick={() => { setCodeFilter(''); setNameFilter(''); }}>Limpiar</Button>
+      </Stack>
+      <br />
+      <Stack
+        direction="row"
         justifyContent="flex-end"
         alignItems="center"
         spacing={2}
@@ -155,7 +179,7 @@ const Invoicing = () => {
                 <TableCell align="right">{row.product_code}</TableCell>
                 <TableCell align="right">{row.product_name}</TableCell>
                 <TableCell align="right">{row.price}</TableCell>
-                <TableCell align="right">{row.quantity}</TableCell>
+                <TableCell align="right">{Number(row.quantity)}</TableCell>
                 <TableCell align="right">{row.subtotal}</TableCell>
                 <TableCell align="right">
                   <Stack direction="row" justifyContent="flex-end">

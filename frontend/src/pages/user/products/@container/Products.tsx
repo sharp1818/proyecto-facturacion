@@ -1,5 +1,5 @@
-import { Box, Button, Chip, Modal, Pagination, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
+import { Box, Button, Chip, FormControl, InputLabel, MenuItem, Modal, Pagination, Paper, Select, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import styles from './Products.module.scss'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -48,6 +48,10 @@ const Products = () => {
   const page = useInput(1);
   const idModal = useInput(Number);
   const [open, setOpen] = React.useState(false);
+
+  const [nameFilter, setNameFilter] = useState('');
+  const [isActiveFilter, setIsActiveFilter] = useState('');
+
   const handleOpen = (id: number) => {
     setOpen(true);
     idModal.setNewValue(id);
@@ -60,11 +64,9 @@ const Products = () => {
 
   const fetchProduct = async () => {
     try {
-      const response: any = await productItems(page.value);
-      if (response.status === 200) {
-        page_count.setNewValue(Math.ceil(response.data.count / 10));
-        product.setNewValue(response.data.results)
-      }
+      const response: any = await productItems(page.value, nameFilter, isActiveFilter);
+      page_count.setNewValue(Math.ceil(response.count / 10));
+      product.setNewValue(response.results)
     } catch (error) {
 
     }
@@ -119,6 +121,32 @@ const Products = () => {
       <Typography variant="h5" gutterBottom>
         Productos
       </Typography>
+      <Stack
+        direction="row"
+        spacing={2}
+        justifyContent="flex-end"
+        alignItems="center">
+        <TextField
+          label="Nombre"
+          value={nameFilter}
+          onChange={(e) => setNameFilter(e.target.value)}
+          size="small"
+        />
+        <FormControl variant="outlined" size="small" style={{ width: '120px' }}>
+          <InputLabel>Estado</InputLabel>
+          <Select
+            label="Estado"
+            value={isActiveFilter}
+            onChange={(e) => setIsActiveFilter(e.target.value)}
+          >
+            <MenuItem value="true">Activo</MenuItem>
+            <MenuItem value="false">Inactivo</MenuItem>
+          </Select>
+        </FormControl>
+        <Button variant="outlined" onClick={fetchProduct}>Buscar</Button>
+        <Button variant="outlined" onClick={() => { setNameFilter(''); setIsActiveFilter(''); }}>Limpiar</Button>
+      </Stack>
+      <br />
       <Stack
         direction="row"
         justifyContent="flex-end"

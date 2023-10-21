@@ -1,4 +1,4 @@
-import { Box, Button, Modal, Pagination, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import { Box, Button, Modal, Pagination, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import styles from './Invoices.module.scss'
 import { useNavigate } from 'react-router-dom';
@@ -43,6 +43,9 @@ const Invoices = () => {
   const rowInvoiceData = useInput({});
   const [openVoucher, setOpenVoucher] = useState(false);
 
+  const [nameFilter, setNameFilter] = useState('');
+  const [rucFilter, setRucFilter] = useState('');
+
   const handleOpenVoucher = () => {setOpenVoucher(true)};
   const handleCloseVoucher = () => {setOpenVoucher(false)};
 
@@ -62,11 +65,9 @@ const Invoices = () => {
 
   const fetchInvoices = async () => {
     try {
-      const response: any = await invoiceItems(page.value);
-      if (response.status === 200) {
-        page_count.setNewValue(Math.ceil(response.data.count / 10));
-        invoices.setNewValue(response.data.results)
-      }
+      const response: any = await invoiceItems(page.value, nameFilter, rucFilter);
+      page_count.setNewValue(Math.ceil(response.count / 10));
+      invoices.setNewValue(response.results)
     } catch (error) {
 
     }
@@ -98,6 +99,28 @@ const Invoices = () => {
       <Typography variant="h5" gutterBottom>
         Facturas
       </Typography>
+      <Stack
+        direction="row"
+        spacing={2}
+        justifyContent="flex-end"
+        alignItems="center">
+        <TextField
+          label="Razón social"
+          value={nameFilter}
+          onChange={(e) => setNameFilter(e.target.value)}
+          size="small"
+        />
+        <TextField
+          label="RUC"
+          value={rucFilter}
+          onChange={(e) => setRucFilter(e.target.value)}
+          size="small"
+        />
+
+        <Button variant="outlined" onClick={fetchInvoices}>Buscar</Button>
+        <Button variant="outlined" onClick={() => { setNameFilter(''); setRucFilter(''); }}>Limpiar</Button>
+      </Stack>
+      <br />
       <Stack
         direction="row"
         justifyContent="flex-end"

@@ -103,7 +103,7 @@ const InvoicesNewItem = () => {
         Documentos
       </Typography>
       <Typography variant="h5" gutterBottom>
-        Facturas
+        Agregar factura
       </Typography>
       <br />
       <form onSubmit={handleSubmit}>

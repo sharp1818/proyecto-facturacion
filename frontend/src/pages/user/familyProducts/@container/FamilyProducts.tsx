@@ -1,5 +1,5 @@
-import { Box, Button, Chip, Modal, Pagination, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
+import { Box, Button, Chip, FormControl, InputLabel, MenuItem, Modal, Pagination, Paper, Select, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import styles from './FamilyProducts.module.scss'
 import { productFamilyDeleteItem, productFamilyItems } from '../../../../services/products_services/products.services';
 import useInput from '../../../../hooks/useInput';
@@ -36,6 +36,10 @@ const FamilyProducts = () => {
   const page = useInput(1);
   const idModal = useInput(Number);
   const [open, setOpen] = React.useState(false);
+
+  const [nameFilter, setNameFilter] = useState('');
+  const [isActiveFilter, setIsActiveFilter] = useState('');
+
   const handleOpen = (id: number) => {
     setOpen(true);
     idModal.setNewValue(id);
@@ -48,19 +52,19 @@ const FamilyProducts = () => {
 
   const fetchProductFamily = async () => {
     try {
-      const response: any = await productFamilyItems(page.value);
-      if (response.status === 200) {
-        page_count.setNewValue(Math.ceil(response.data.count / 10));
-        productFamily.setNewValue(response.data.results)
-      }
-    } catch (error) {
+      const response: any = await productFamilyItems(page.value, nameFilter, isActiveFilter);
 
+      page_count.setNewValue(Math.ceil(response.count / 10));
+      productFamily.setNewValue(response.results);
+
+    } catch (error) {
+    
     }
   };
 
   useEffect(() => {
     fetchProductFamily();
-  }, [page.value])
+  }, [page.value]);
 
   const newItem = () => {
     navigate('/family-products/newItem');
@@ -80,7 +84,6 @@ const FamilyProducts = () => {
     }
   }
 
-
   return (
     <div className={styles.container}>
       <Typography variant="button" gutterBottom>
@@ -89,6 +92,32 @@ const FamilyProducts = () => {
       <Typography variant="h5" gutterBottom>
         Familia de productos
       </Typography>
+      <Stack
+        direction="row"
+        spacing={2}
+        justifyContent="flex-end"
+        alignItems="center">
+        <TextField
+          label="Nombre"
+          value={nameFilter}
+          onChange={(e) => setNameFilter(e.target.value)}
+          size="small"
+        />
+        <FormControl variant="outlined" size="small" style={{ width: '120px' }}>
+          <InputLabel>Estado</InputLabel>
+          <Select
+            label="Estado"
+            value={isActiveFilter}
+            onChange={(e) => setIsActiveFilter(e.target.value)}
+          >
+            <MenuItem value="true">Activo</MenuItem>
+            <MenuItem value="false">Inactivo</MenuItem>
+          </Select>
+        </FormControl>
+        <Button variant="outlined" onClick={fetchProductFamily}>Buscar</Button>
+        <Button variant="outlined" onClick={() => { setNameFilter(''); setIsActiveFilter(''); }}>Limpiar</Button>
+      </Stack>
+      <br />
       <Stack
         direction="row"
         justifyContent="flex-end"
