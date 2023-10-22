@@ -2,6 +2,7 @@ version: '3.7'
 
 services:
   backend:
+    container_name: ck_backend_v1
     volumes:
       - static:/static
     env_file:
@@ -11,11 +12,13 @@ services:
     ports:
       - "8000:8000"
   frontend:
+    container_name: ck_frontend_v1
     build:
       context: ./frontend
     volumes:
       - frontend:/app/build
   nginx:
+    container_name: ck_nginx_v1
     build:
       context: ./nginx
     volumes:
